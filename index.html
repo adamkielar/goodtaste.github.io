@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Good Taste — portfolio projektów technologicznych i projektów mieszkań.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Good Taste — Projekty technologiczne i wnętrza</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/content.js" defer></script>
+  <script src="assets/main.js" defer></script>
+</head>
+<body id="start">
+  <a class="skip-link" href="#portfolio">Przejdź do portfolio</a>
+  <header class="header">
+    <div class="header-inner">
+      <a class="wordmark" href="#start" aria-label="Good Taste — strona główna">GOOD<span>TASTE</span><i aria-hidden="true">.</i></a>
+      <div class="header-utilities" aria-label="Kontakt i media społecznościowe">
+        <span class="header-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a14 14 0 0 1-7-7l2-2-2-5Z"/></svg><span data-phone aria-disabled="true">Telefon wkrótce</span></span>
+        <span class="facebook-button" data-facebook aria-label="Facebook — link wkrótce" aria-disabled="true" title="Facebook — link wkrótce">f</span>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation"><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></button>
+      <nav class="navigation" id="navigation" aria-label="Menu główne">
+        <a href="#start" class="is-active" aria-current="location">Start</a>
+        <a href="#technologiczne">Projekty technologiczne</a>
+        <a href="#mieszkania">Projekty mieszkań</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="showcase" aria-label="Dwa obszary projektowania">
+      <h1 class="sr-only">Good Taste — projekty technologiczne i projekty mieszkań</h1>
+      <img class="showcase-image" src="assets/images/showcase.png" width="3000" height="1200" alt="Dwa wnętrza: lokal gastronomiczny z barem i zielenią po lewej oraz jasna sypialnia po prawej." fetchpriority="high">
+      <a class="showcase-half showcase-left" href="#technologiczne"><span class="showcase-link">Projekty technologiczne <span aria-hidden="true">↗</span></span></a>
+      <a class="showcase-half showcase-right" href="#mieszkania"><span class="showcase-link">Projekty mieszkań <span aria-hidden="true">↗</span></span></a>
+    </section>
+    <div class="intro" id="portfolio"><span class="eyebrow">Dwa spojrzenia. Jedna estetyka.</span><p>Przestrzeń w dobrym guście.</p><a class="scroll-cue" href="#technologiczne" aria-label="Zobacz portfolio"><span aria-hidden="true">↓</span></a></div>
+    <section class="portfolio-section section-wrap" id="technologiczne" aria-labelledby="technology-title">
+      <div class="section-heading"><div><span class="eyebrow">Portfolio / 01</span><h2 id="technology-title">Projekty technologiczne</h2></div><p>Funkcja. Detal. Przestrzeń.</p></div>
+      <div class="project-grid" data-gallery="technologiczne"></div>
+    </section>
+    <section class="portfolio-section residential-section" id="mieszkania" aria-labelledby="home-title"><div class="section-wrap">
+      <div class="section-heading"><div><span class="eyebrow">Portfolio / 02</span><h2 id="home-title">Projekty mieszkań</h2></div><p>Miejsce na codzienność.</p></div>
+      <div class="project-grid" data-gallery="mieszkania"></div>
+    </div></section>
+    <noscript><p class="noscript-note">Aby zobaczyć galerię i powiększać zdjęcia, włącz JavaScript w przeglądarce.</p></noscript>
+    <section class="contact" id="kontakt" aria-labelledby="contact-title">
+      <div class="section-wrap">
+        <span class="eyebrow">Porozmawiajmy o Twoim projekcie</span><h2 id="contact-title">Kontakt</h2>
+        <div class="contact-details">
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="24" cy="24" r="8"/><path d="M32 16v15c0 7 11 4 11-7a19 19 0 1 0-8 15"/></svg>
+            <div><span class="contact-label">Napisz do nas</span><span class="contact-value" data-email aria-disabled="true">Adres e-mail wkrótce</span></div>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 7-8 1c-2 0-3 2-2 5 3 15 15 27 30 30 3 1 5 0 5-2l1-8-11-5-4 5a28 28 0 0 1-11-11l5-4-5-11Z"/><path d="M28 6h11a5 5 0 0 1 5 5v4a5 5 0 0 1-5 5h-6l-5 4V11a5 5 0 0 1 5-5"/></svg>
+            <div><span class="contact-label">Zadzwoń</span><span class="contact-value" data-phone aria-disabled="true">Numer telefonu wkrótce</span></div>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="19"/><path d="M27 39V24h5l1-6h-6v-3c0-2 1-3 3-3h3V7h-5c-5 0-8 3-8 8v3h-4v6h4v15"/></svg>
+            <div><span class="contact-label">Obserwuj nas</span><span class="contact-value" data-facebook aria-disabled="true">Facebook — wkrótce</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="section-wrap footer-inner">
+    <a class="wordmark footer-wordmark" href="#start" aria-label="Good Taste — powrót na górę">GOOD<span>TASTE</span><i aria-hidden="true">.</i></a>
+    <span class="facebook-button" data-facebook aria-label="Facebook — link wkrótce" aria-disabled="true" title="Facebook — link wkrótce">f</span>
+    <p>Good Taste © <span id="year">2026</span></p>
+    <a class="back-top" href="#start" aria-label="Wróć na górę">↑</a>
+  </div></footer>
+  <dialog class="lightbox" aria-labelledby="lightbox-title">
+    <div class="lightbox-toolbar"><span id="lightbox-category" class="eyebrow"></span><button class="lightbox-close" type="button" aria-label="Zamknij podgląd">×</button></div>
+    <div class="lightbox-stage"><button class="lightbox-prev lightbox-arrow" type="button" aria-label="Poprzednie zdjęcie">←</button><figure><div class="lightbox-media"></div><figcaption><h2 id="lightbox-title"></h2><span class="lightbox-counter" aria-live="polite" aria-atomic="true"></span></figcaption></figure><button class="lightbox-next lightbox-arrow" type="button" aria-label="Następne zdjęcie">→</button></div>
+    <p class="lightbox-hint">Użyj strzałek, aby przeglądać · Esc, aby zamknąć</p>
+  </dialog>
+</body>
+</html>
