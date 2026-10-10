@@ -19,6 +19,10 @@ img { display: block; max-width: 100%; }
 .wordmark { font-size: 24px; font-weight: 300; letter-spacing: 5px; white-space: nowrap; }
 .wordmark span { font-weight: 600; margin-left: 7px; }
 .wordmark i { font-style: normal; color: #262626; letter-spacing: 0; }
+.wordmark { display: inline-block; }
+.brand-logo { width: 174px; height: auto; }
+.footer .brand-logo { width: 220px; }
+.js { scroll-padding-top: calc(var(--header-height, 150px) + 12px); }
 .navigation { display: flex; align-items: center; gap: 38px; }
 .navigation a { font-size: 10px; font-weight: 500; letter-spacing: 2.2px; line-height: 22px; text-transform: uppercase; position: relative; }
 .navigation a::after { content: ""; position: absolute; bottom: -3px; height: 1px; width: 100%; left: 0; background: currentColor; transform: scaleX(0); transition: transform .2s; }
@@ -47,7 +51,7 @@ img { display: block; max-width: 100%; }
 .section-heading h2::after { content: ""; display: block; width: 36px; height: 2px; background: var(--accent); margin-top: 22px; }
 .section-heading > p { margin: 0 0 24px; font-size: 12px; color: var(--muted); letter-spacing: .3px; }
 .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
-.project-card { display: block; min-width: 0; padding: 0; background: transparent; text-align: left; }
+.project-card { display: block; align-self: start; min-width: 0; padding: 0; background: transparent; text-align: left; }
 .project-visual { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #ececec; }
 .project-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s; }
 .project-card:hover .project-visual img { transform: scale(1.035); }
@@ -58,13 +62,13 @@ img { display: block; max-width: 100%; }
 .project-enlarge { position: absolute; right: 14px; bottom: 14px; width: 34px; height: 34px; background: white; display: grid; place-items: center; font-size: 20px; opacity: 0; transform: translateY(5px); transition: opacity .2s, transform .2s; }
 .project-card:hover .project-enlarge, .project-card:focus-visible .project-enlarge { opacity: 1; transform: none; }
 .project-caption { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-top: 17px; }
-.project-caption strong { font-size: 10px; text-transform: uppercase; letter-spacing: 1.7px; font-weight: 500; }
+.project-caption strong { font-size: 10px; text-transform: uppercase; letter-spacing: 1.7px; font-weight: 500; line-height: 1.8; }
 .project-caption small { font-size: 10px; color: var(--muted); }
 .residential-section { background: var(--soft); }
 .residential-section .placeholder { background: #e8e8e8; }
 /* Hazel-inspired contact panel and centered dark footer. */
 .contact { position: relative; isolation: isolate; overflow: hidden; color: white; background: #171717; padding-block: 94px 104px; text-align: center; }
-.contact::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("images/showcase.png") center 55% / cover no-repeat; filter: grayscale(1); }
+.contact::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("images/showcase.webp") center 55% / cover no-repeat; filter: grayscale(1); }
 .contact::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgb(0 0 0 / 79%); }
 .contact .eyebrow { color: #ddd; font-size: 11px; font-weight: 600; letter-spacing: 4px; }
 .contact h2 { margin: 21px 0 72px; font-size: clamp(36px, 4.5vw, 60px); text-transform: uppercase; font-weight: 300; letter-spacing: 12px; line-height: 1.2; }
@@ -121,6 +125,8 @@ img { display: block; max-width: 100%; }
   .header-inner { min-height: 80px; padding: 23px 22px; flex-direction: row; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .wordmark { font-size: 19px; letter-spacing: 3px; }
   .wordmark span { margin-left: 4px; }
+  .brand-logo { width: 135px; }
+  .footer .brand-logo { width: 190px; }
   .menu-toggle { display: flex; align-items: center; gap: 13px; padding: 8px 0 8px 10px; background: none; text-transform: uppercase; font-size: 9px; letter-spacing: 1.4px; }
   .menu-icon { width: 20px; height: 10px; border-top: 1px solid; border-bottom: 1px solid; }
   .navigation { display: flex; flex-basis: 100%; flex-direction: column; align-items: flex-start; gap: 16px; padding: 22px 0 8px; }

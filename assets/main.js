@@ -41,6 +41,7 @@ function projectImage(item, index, large = false) {
   img.alt = item.alt || item.title || `Zdjęcie ${index + 1}`;
   img.loading = large ? "eager" : "lazy";
   img.decoding = "async";
+  if (item.width && item.height) { img.width = item.width; img.height = item.height; }
   img.addEventListener("error", () => img.replaceWith(placeholder(index, "Zdjęcie niedostępne")), { once: true });
   return img;
 }
@@ -160,3 +161,9 @@ window.addEventListener("scroll", () => {
   if (!scheduled) { scheduled = true; requestAnimationFrame(updateNavigation); }
 }, { passive: true });
 updateNavigation();
+// Keep anchor destinations below the actual header after logo loading and resizing.
+new ResizeObserver(() => {
+  if (toggle.getAttribute("aria-expanded") !== "true") {
+    document.documentElement.style.setProperty("--header-height", `${document.querySelector(".header").offsetHeight}px`);
+  }
+}).observe(document.querySelector(".header"));
