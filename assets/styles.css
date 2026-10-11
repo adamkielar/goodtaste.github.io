@@ -180,3 +180,46 @@ img { display: block; max-width: 100%; }
   .lightbox-hint { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+
+/* Service and project pages keep the portfolio's quiet, monochrome layout. */
+.intro h1 { max-width: 880px; margin: 20px auto; font-size: clamp(25px, 3vw, 40px); line-height: 1.35; font-weight: 400; letter-spacing: .3px; }
+.intro .intro-copy { max-width: 730px; margin: 0 auto 20px; font-size: 15px; line-height: 1.9; letter-spacing: 0; }
+.section-copy { max-width: 750px; font-size: 16px; line-height: 1.85; margin: -10px 0 16px; color: #555; }
+.text-link { display: inline-block; font-size: 13px; line-height: 1.8; text-decoration: underline; text-underline-offset: 5px; margin: 10px 0 32px; }
+.text-link:hover, .project-details:hover { color: #555; }
+.project-entry { min-width: 0; }
+.project-details { display: inline-block; margin-top: 12px; font-size: 12px; text-decoration: underline; text-underline-offset: 4px; padding-block: 8px; }
+.page-intro { padding-block: 38px 48px; }
+.breadcrumbs { margin-bottom: 48px; font-size: 12px; line-height: 1.8; color: #666; }
+.breadcrumbs ol { display: flex; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; gap: 8px 12px; }
+.breadcrumbs li + li::before { content: "/"; margin-right: 12px; color: #999; }
+.breadcrumbs a { text-decoration: underline; text-underline-offset: 4px; }
+.page-intro h1 { max-width: 960px; font-size: clamp(30px, 4vw, 52px); font-weight: 400; line-height: 1.2; letter-spacing: -.5px; margin: 18px 0 24px; }
+.lead { font-size: clamp(18px, 2vw, 22px); line-height: 1.7; font-weight: 300; max-width: 850px; }
+.project-description { max-width: 800px; line-height: 1.9; font-size: 16px; }
+.editorial { padding-block: 48px 65px; max-width: 850px; }
+.editorial h2 { font-weight: 400; font-size: clamp(22px, 2.8vw, 29px); line-height: 1.4; margin: 40px 0 16px; }
+.editorial h2:first-child { margin-top: 0; }
+.editorial p, .brief-list { color: #555; line-height: 1.9; font-size: 16px; }
+.editorial p a { text-decoration: underline; text-underline-offset: 4px; }
+.brief-list { padding-left: 22px; }
+.brief-list li { margin-bottom: 9px; }
+.editorial details { border-bottom: 1px solid var(--line); padding: 22px 0; }
+.editorial summary { cursor: pointer; line-height: 1.6; font-size: 17px; }
+.editorial summary:focus-visible { outline: 2px solid #555; outline-offset: 6px; }
+.photo-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 28px; }
+.photo-gallery figure { margin: 0; min-width: 0; }
+.photo-gallery figure:first-child { grid-column: 1 / -1; }
+.photo-gallery img { width: 100%; height: auto; background: var(--soft); }
+.photo-gallery figcaption { color: #666; font-size: 12px; line-height: 1.7; margin-top: 12px; }
+.contact h2 { margin-bottom: 25px; }
+.contact-intro { max-width: 650px; margin: 0 auto 54px; line-height: 1.8; color: #ddd; font-size: 15px; }
+@media (max-width: 680px) {
+  .page-intro { padding-top: 24px; }
+  .breadcrumbs { margin-bottom: 34px; }
+  .editorial { padding-block: 34px 45px; }
+  .photo-gallery { grid-template-columns: 1fr; gap: 32px; }
+  .photo-gallery figure:first-child { grid-column: auto; }
+  .section-copy { font-size: 15px; }
+  .contact-intro { margin-bottom: 38px; }
+}
