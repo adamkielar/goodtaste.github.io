@@ -1,6 +1,7 @@
 "use strict";
 document.documentElement.classList.add("js");
 const content = window.siteContent;
+const assetRoot = document.body.dataset.root || "./";
 const menu = document.querySelector(".navigation");
 const toggle = document.querySelector(".menu-toggle");
 const dialog = document.querySelector(".lightbox");
@@ -37,7 +38,7 @@ function placeholder(index, label = "Miejsce na zdjęcie") {
 function projectImage(item, index, large = false) {
   if (!item.src) return placeholder(index);
   const img = document.createElement("img");
-  img.src = large ? (item.fullSrc || item.src) : item.src;
+  img.src = new URL(assetRoot + (large ? (item.fullSrc || item.src) : item.src), document.baseURI).href;
   img.alt = item.alt || item.title || `Zdjęcie ${index + 1}`;
   img.loading = large ? "eager" : "lazy";
   img.decoding = "async";
@@ -48,46 +49,23 @@ function projectImage(item, index, large = false) {
 function projectPhotos(project) {
   return project.images?.length ? project.images : [{ src: null, alt: "" }];
 }
-for (const grid of document.querySelectorAll("[data-gallery]")) {
-  const key = grid.dataset.gallery;
-  content.galleries[key].projects.forEach((project, index) => {
-    const photos = projectPhotos(project);
-    const cover = { ...photos[0], src: project.cover || photos[0].src, title: project.title };
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "project-card";
-    button.setAttribute("aria-label", `Otwórz galerię: ${project.title}${cover.src ? "" : " — zdjęcia wkrótce"}`);
-    button.setAttribute("aria-haspopup", "dialog");
-    const visual = document.createElement("span");
-    visual.className = "project-visual";
-    visual.append(projectImage(cover, index));
-    const enlarge = document.createElement("span");
-    enlarge.className = "project-enlarge";
-    enlarge.textContent = "+";
-    enlarge.setAttribute("aria-hidden", "true");
-    visual.append(enlarge);
-    const caption = document.createElement("span");
-    caption.className = "project-caption";
-    const title = document.createElement("strong");
-    title.textContent = project.title;
-    caption.append(title);
-    if (!cover.src) {
-      const pending = document.createElement("small");
-      pending.textContent = "Zdjęcia wkrótce";
-      caption.append(pending);
-    }
-    button.append(visual, caption);
-    button.addEventListener("click", () => {
-      activeGallery = key;
-      activeProject = project;
-      activeIndex = 0;
-      returnFocus = button;
-      updateLightbox();
-      dialog.showModal();
-      document.body.classList.add("modal-open");
-      document.querySelector(".lightbox-close").focus();
-    });
-    grid.append(button);
+// HTML contains the complete gallery. JavaScript only adds the lightbox.
+for (const link of document.querySelectorAll("[data-gallery-key]")) {
+  const key = link.dataset.galleryKey;
+  const project = content.galleries[key]?.projects[Number(link.dataset.projectIndex)];
+  if (!project || !dialog?.showModal) continue;
+  link.setAttribute("aria-haspopup", "dialog");
+  link.addEventListener("click", event => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    event.preventDefault();
+    activeGallery = key;
+    activeProject = project;
+    activeIndex = Number(link.dataset.photoIndex || 0);
+    returnFocus = link;
+    updateLightbox();
+    dialog.showModal();
+    document.body.classList.add("modal-open");
+    document.querySelector(".lightbox-close").focus();
   });
 }
 function updateLightbox() {
@@ -142,25 +120,14 @@ if (content.email) contactLinks("[data-email]", `mailto:${content.email}`, conte
 if (content.phone) contactLinks("[data-phone]", `tel:${content.phone.replace(/[^+\d]/g, "")}`, content.phone);
 if (/^https:\/\//i.test(content.facebook)) contactLinks("[data-facebook]", content.facebook, "Facebook", true);
 document.querySelector("#year").textContent = new Date().getFullYear();
-const navLinks = [...menu.querySelectorAll("a")];
-const sections = navLinks.map(link => document.querySelector(link.getAttribute("href")));
-let scheduled = false;
-function updateNavigation() {
-  const offset = document.querySelector(".header").offsetHeight + 35;
-  let active = 0;
-  sections.forEach((section, index) => { if (section.getBoundingClientRect().top <= offset) active = index; });
-  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 5) active = sections.length - 1;
-  navLinks.forEach((link, index) => {
-    link.classList.toggle("is-active", index === active);
-    if (index === active) link.setAttribute("aria-current", "location");
-    else link.removeAttribute("aria-current");
-  });
-  scheduled = false;
+// Match actual page URLs; navigation now includes service pages, not only anchors.
+for (const link of menu.querySelectorAll("a")) {
+  const target = new URL(link.href);
+  const current = target.pathname === location.pathname && !target.hash;
+  link.classList.toggle("is-active", current);
+  if (current) link.setAttribute("aria-current", "page");
+  else link.removeAttribute("aria-current");
 }
-window.addEventListener("scroll", () => {
-  if (!scheduled) { scheduled = true; requestAnimationFrame(updateNavigation); }
-}, { passive: true });
-updateNavigation();
 // Keep anchor destinations below the actual header after logo loading and resizing.
 new ResizeObserver(() => {
   if (toggle.getAttribute("aria-expanded") !== "true") {

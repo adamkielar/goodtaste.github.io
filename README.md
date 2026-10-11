@@ -1,54 +1,61 @@
 # Good Taste
 
-Polskie portfolio w HTML, CSS i JavaScript. Bez instalacji zależności i bez kompilacji.
+Polskie portfolio Good Taste: projektowanie wnętrz i projekty technologiczne gastronomii, z naciskiem na Wrocław i Dolny Śląsk. Statyczny HTML, CSS i JavaScript, bez zależności npm. GitHub Pages publikuje gotowe pliki z repozytorium.
 
 ## Podgląd lokalny
 
-Uruchom `python3 -m http.server 8080` w katalogu repozytorium i otwórz http://localhost:8080.
-
-## Treść i zdjęcia
-
-Edytuj `assets/content.js`. Dodano 40 zdjęć w 7 projektach: 2 technologicznych i 5 mieszkalnych. Każda z dwóch kategorii ma tablicę `projects`. Każdy projekt ma własną tablicę `images`: kliknięcie jego miniatury otwiera tylko te zdjęcia. Strzałki przewijają zdjęcia w obrębie projektu i wracają do początku po ostatnim zdjęciu. Dla pojedynczego zdjęcia są ukryte.
-
-Pliki pochodzą z siedmiu nazwanych folderów w `../good taste`. Zachowano kolejność liczbową nazw źródłowych; pierwsze zdjęcie jest okładką. W repozytorium mają proste ścieżki bez spacji i polskich znaków. Oryginały pozostają niezmienione poza repozytorium. Wszystkie obrazy strony zajmują teraz około 6,75 MB zamiast 232,77 MB — szczegóły w `IMAGE_AUDIT.md`.
-
-Galerie używają WebP do 2000 px na dłuższym boku. Siatka pobiera osobne miniatury do 800 px, wskazane w polu `cover`. Zdjęcia w lightboxie pobierane są dopiero po otwarciu. Mniejsze oryginały nie są powiększane. Aby ponownie wygenerować grafiki z folderów źródłowych, uruchom `python3 scripts/optimize_images.py` w środowisku z Pillow i obsługą WebP. Liczba zdjęć w konfiguracji musi odpowiadać liczbie plików w folderze danego projektu.
-
-1. Umieść zdjęcia w `assets/images/portfolio/`.
-2. Uzupełnij projekty i zastąp wpisy z `src: null` własnymi zdjęciami:
-
-```js
-{
-  title: "Mieszkanie — Warszawa",
-  // Opcjonalnie cover: "assets/images/portfolio/miniatura.jpg",
-  // Bez cover miniaturą jest pierwsze zdjęcie.
-  images: [
-    {
-      src: "assets/images/portfolio/kuchnia.jpg",
-      fullSrc: "assets/images/portfolio/kuchnia-duza.jpg", // opcjonalne
-      title: "Kuchnia", // opcjonalny podpis zdjęcia
-      alt: "Jasna kuchnia z drewnianą zabudową i kamienną wyspą"
-    },
-    { src: "assets/images/portfolio/salon.jpg", alt: "Salon z dużymi oknami" }
-  ]
-}
+```sh
+python3 -m http.server 8080
 ```
 
-3. W tym samym pliku uzupełnij `email`, `phone` i `facebook` (pełny adres HTTPS). Te dane aktualizują nagłówek, sekcję Kontakt i stopkę. Numer telefonu staje się linkiem `tel:`, a e-mail linkiem `mailto:`. Puste dane wyświetlają placeholder, bez fikcyjnych linków. Facebook to jedyny serwis społecznościowy.
-4. Logo w nagłówku i stopce to `assets/images/logo.png`. Ikona karty to `assets/images/GT_znak.png`. Oba pliki pochodzą z dostarczonych grafik.
+Otwórz `http://localhost:8080/`. Wszystkie podstrony, galerie i linki działają również pod prefiksem repozytorium.
 
-Obraz otwierający stronę to lokalnie zoptymalizowany `assets/images/showcase.webp`, o wymiarach 2400 × 960. Logo ma 600 × 256 px, a favicon 48 × 48 px. Zachowano proporcje, kolory, przezroczystość logo i osadzone znaki na zdjęciach. WebP używa kompresji stratnej; pliki źródłowe pozostają niezmienione.
+## Edycja i generowanie
 
-Interfejs jest czarno-biały. Zdjęcie główne zachowuje oryginalne kolory. Sekcja Kontakt używa tymczasowo tego samego zdjęcia jako tła, w skali szarości z ciemną nakładką CSS. Własne zdjęcie kontaktowe można podstawić w regule `.contact::before` w `assets/styles.css`. Przesłane zrzuty Hazel są referencją układu, nie grafiką z wtopionym tekstem na stronie.
+Źródła treści:
 
-Na komputerze przyciski na obrazie pojawiają się po najechaniu lub ustawieniu fokusu klawiaturą. Na urządzeniach dotykowych są widoczne stale, a na małym ekranie znajdują się bezpośrednio pod odpowiednimi połowami obrazu, żeby nie zasłaniać wnętrz.
+- `assets/content.js`: dane kontaktowe, siedem projektów, opisy i 40 obrazów. Format po `window.siteContent =` musi pozostać poprawnym JSON-em.
+- `site.json`: docelowy publiczny adres HTTPS wskazany przez właściciela: `https://goodtaste.net.pl/`.
+- `templates/home.html`: strona główna.
+- `templates/interiors.html` i `templates/gastronomy.html`: strony usług.
+- `templates/base.html`: wspólna nawigacja, kontakt, stopka i lightbox.
+- `assets/styles.css` i `assets/main.js`: wygląd oraz interakcje.
 
-## GitHub Pages
+Po zmianie treści lub adresu uruchom:
 
-Po dodaniu plików do gałęzi `main` w GitHub wybierz **Settings → Pages → Deploy from a branch → main → /(root)**. Pusty plik `.nojekyll` wyłącza przetwarzanie przez Jekyll. Nie potrzeba własnego workflow ani pakietów npm.
+```sh
+python3 scripts/build_site.py
+python3 scripts/check_site.py
+```
 
-Linki do zasobów są względne, więc działają również pod adresem projektu z prefiksem repozytorium. Ostateczny adres strony wyświetli GitHub w ustawieniach Pages.
+Generator korzysta wyłącznie ze standardowej biblioteki Pythona 3.10+. Wygenerowane pliki `index.html`, katalogi stron usług i projektów, `sitemap.xml` oraz `robots.txt` należy zapisać w repozytorium razem ze źródłami. Nie edytuj wygenerowanego HTML ręcznie: kolejne uruchomienie zastąpi zmiany.
 
-Publikuj tylko zawartość tego repozytorium. Archiwum motywu WordPress Hazel pozostaje poza nim.
+Kontrola bez zapisywania plików:
 
-Przed publikacją: uzupełnij e-mail, telefon i Facebook oraz sprawdź teksty. Nie skonfigurowano analityki, formularzy ani zewnętrznych fontów.
+```sh
+python3 scripts/build_site.py --check
+python3 scripts/check_site.py
+node --check assets/main.js
+```
+
+Python jest potrzebny tylko przy aktualizacji treści; hosting nie uruchamia generatora. `.nojekyll` wyłącza przetwarzanie przez Jekyll.
+
+## Projekty i obrazy
+
+Każdy projekt ma `title`, unikalny `slug`, `subtitle`, `description`, `cover` oraz niepustą tablicę `images`. Każdy obraz ma lokalny `src`, opisowy `alt`, `width` i `height`. Zachowaj istniejące slugi, aby nie zmieniać opublikowanych adresów.
+
+Miniatury otwierają lightbox, a linki „O projekcie” prowadzą do stałych podstron. Bez JavaScript miniatury również prowadzą do podstron. Na stronie projektu wszystkie obrazy i podpisy są w HTML; kliknięcie obrazu bez JavaScript otwiera plik WebP. Każda strona ma własny tytuł, opis, adres kanoniczny i dane JSON-LD.
+
+Obrazy pochodzą z dostarczonych materiałów. Wizualizacje nie są opisywane jako fotografie ukończonych realizacji. Galeria korzysta z WebP do 2000 px, miniatur do 800 px i ładowania odroczonego. Oryginały pozostają poza repozytorium. Opcjonalne ponowne przetworzenie zdjęć: `python3 scripts/optimize_images.py` w środowisku z Pillow i obsługą WebP; potem uruchom generator stron.
+
+## Kontakt i publikacja
+
+Uzupełnij `email`, `phone` i opcjonalnie `facebook` (pełny adres HTTPS) w `assets/content.js`, następnie wygeneruj strony. Dane będą dostępne w HTML także bez JavaScript. Puste wartości pozostawiają dotychczasowe komunikaty „wkrótce”; nie dodano fikcyjnych danych firmy.
+
+W GitHub Pages: **Settings → Pages → Deploy from a branch → main → /(root)**. Publikuj tylko zawartość tego repozytorium. Nie dołączaj folderów materiałów źródłowych ani archiwum motywu WordPress.
+
+Strona jest przygotowana do przeniesienia na `https://goodtaste.net.pl/`. Adresy kanoniczne, metadane społecznościowe, JSON-LD i mapa witryny wskazują już tę domenę. Samo ustawienie URL nie zmienia DNS, hostingu ani przekierowań. Konfigurację domeny w hostingu wykonaj podczas przenoszenia strony; jeżeli pozostanie na GitHub Pages, ustaw tam domenę niestandardową.
+
+Po przeniesieniu opublikuj zawartość repozytorium w katalogu głównym domeny. Sprawdź `https://goodtaste.net.pl/robots.txt` i zgłoś `https://goodtaste.net.pl/sitemap.xml` w Search Console. Skonfiguruj przekierowania ze starych adresów na odpowiadające im podstrony nowej domeny. Względne linki do stron i zasobów nadal pozwalają korzystać z lokalnego podglądu.
+
+Badania, mapa fraz, ograniczenia i plan lokalnego SEO: [SEO_RESEARCH.md](SEO_RESEARCH.md).
