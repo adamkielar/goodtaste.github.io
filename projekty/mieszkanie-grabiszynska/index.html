@@ -31,7 +31,12 @@
       "areaServed": {
         "@type": "AdministrativeArea",
         "name": "województwo dolnośląskie"
-      }
+      },
+      "email": "biuro@goodtaste.net.pl",
+      "telephone": "607 753 510",
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=100044279233523"
+      ]
     },
     {
       "@type": "WebSite",
@@ -100,12 +105,18 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Projektowanie wnętrz",
-          "item": "https://goodtaste.net.pl/projektowanie-wnetrz/"
+          "name": "Portfolio",
+          "item": "https://goodtaste.net.pl/#portfolio"
         },
         {
           "@type": "ListItem",
           "position": 3,
+          "name": "Projekty wnętrz",
+          "item": "https://goodtaste.net.pl/portfolio/projekty-wnetrz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
           "name": "Mieszkanie Grabiszyńska",
           "item": "https://goodtaste.net.pl/projekty/mieszkanie-grabiszynska/"
         }
@@ -116,9 +127,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
   <link rel="icon" href="../../assets/images/GT_znak.png" type="image/png">
-  <link rel="stylesheet" href="../../assets/styles.css">
-  <script src="../../assets/content.js" defer></script>
-  <script src="../../assets/main.js" defer></script>
+  <link rel="stylesheet" href="../../assets/styles.css?v=20261012-alignment2">
+  <script src="../../assets/content.js?v=20261012-copy" defer></script>
+  <script src="../../assets/main.js?v=20261012-copy" defer></script>
 </head>
 <body id="start" data-root="../../">
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -126,53 +137,66 @@
     <div class="header-inner">
       <a class="wordmark" href="../../" aria-label="Good Taste — strona główna"><img class="brand-logo" src="../../assets/images/logo.png" width="600" height="256" alt="Good Taste"></a>
       <div class="header-utilities" aria-label="Kontakt i media społecznościowe">
-        <span class="header-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a14 14 0 0 1-7-7l2-2-2-5Z"/></svg><span data-phone aria-disabled="true">Telefon wkrótce</span></span>
-        <span class="facebook-button" data-facebook aria-label="Facebook — link wkrótce" aria-disabled="true" title="Facebook — link wkrótce">f</span>
+        <span class="header-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a14 14 0 0 1-7-7l2-2-2-5Z"/></svg><a href="tel:607753510">607 753 510</a></span>
+        <a class="facebook-button" href="https://www.facebook.com/profile.php?id=100044279233523" target="_blank" rel="noopener noreferrer" aria-label="Facebook — otwiera się w nowej karcie">f</a>
       </div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation"><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></button>
       <nav class="navigation" id="navigation" aria-label="Menu główne">
         <a href="../../" >Start</a>
-        <a href="../../projekty-technologiczne-gastronomii/">Projekty technologiczne</a>
-        <a href="../../projektowanie-wnetrz/">Projekty mieszkań</a>
+        <a href="../../#o-nas">O Nas</a>
+        <details class="nav-group" data-nav-group="oferta">
+          <summary>Oferta</summary>
+          <ul class="nav-submenu">
+            <li><a href="../../projekty-technologiczne-gastronomii/">Projekty technologiczne</a></li>
+            <li><a href="../../projektowanie-wnetrz/">Projekty wnętrz</a></li>
+          </ul>
+        </details>
+        <details class="nav-group" data-nav-group="portfolio">
+          <summary>Portfolio</summary>
+          <ul class="nav-submenu">
+            <li><a href="../../portfolio/projekty-technologiczne/">Projekty technologiczne</a></li>
+            <li><a href="../../portfolio/projekty-wnetrz/">Projekty wnętrz</a></li>
+          </ul>
+        </details>
         <a href="#kontakt">Kontakt</a>
       </nav>
     </div>
   </header>
   <main id="main">
 <section class="page-intro section-wrap">
-              <nav class="breadcrumbs" aria-label="Ścieżka nawigacji"><ol><li><a href="../../">Start</a></li><li><a href="../../projektowanie-wnetrz/">Projektowanie wnętrz</a></li><li aria-current="page">Mieszkanie Grabiszyńska</li></ol></nav><span class="eyebrow">Portfolio · Projektowanie wnętrz</span>
-              <h1>Mieszkanie Grabiszyńska</h1><p class="lead">Jasne wnętrze dla codzienności</p>
-              <p class="project-description">Projekt mieszkania przy Grabiszyńskiej łączy jasną bazę z drewnianymi powierzchniami i czarnymi detalami. Kuchnia otwiera się na salon, a motywy na ścianach nadają odrębny charakter sypialni i pokojowi dziecięcemu. W łazience powtarza się zestawienie drewna z szarością; zabudowy i podświetlane lustro porządkują kompozycję.</p>
-              <a class="text-link" href="#kontakt">Porozmawiajmy o Twoim projekcie <span aria-hidden="true">↗</span></a>
+              <nav class="breadcrumbs" aria-label="Ścieżka nawigacji"><ol><li><a href="../../">Start</a></li><li><a href="../../#portfolio">Portfolio</a></li><li><a href="../../portfolio/projekty-wnetrz/">Projekty wnętrz</a></li><li aria-current="page">Mieszkanie Grabiszyńska</li></ol></nav><span class="eyebrow">Portfolio · Projekty wnętrz</span>
+              <h1>Mieszkanie Grabiszyńska</h1>
             </section>
             <section class="photo-gallery section-wrap" aria-label="Wizualizacje projektu"><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/01.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="0" aria-label="Powiększ: Jasny przedpokój z drewnianą zabudową, ławką i zaokrąglonym lustrem — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/01.webp" alt="Jasny przedpokój z drewnianą zabudową, ławką i zaokrąglonym lustrem — Mieszkanie Grabiszyńska" width="1578" height="2000" fetchpriority="high" decoding="async"></a><figcaption>Jasny przedpokój z drewnianą zabudową, ławką i zaokrąglonym lustrem</figcaption></figure><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/02.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="1" aria-label="Powiększ: Korytarz z ławką, lustrem i widokiem na otwarty regał — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/02.webp" alt="Korytarz z ławką, lustrem i widokiem na otwarty regał — Mieszkanie Grabiszyńska" width="1780" height="2000" loading="lazy" decoding="async"></a><figcaption>Korytarz z ławką, lustrem i widokiem na otwarty regał</figcaption></figure><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/03.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="2" aria-label="Powiększ: Salon z szarą sofą, okrągłym stolikiem i dekoracyjną ścianą — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/03.webp" alt="Salon z szarą sofą, okrągłym stolikiem i dekoracyjną ścianą — Mieszkanie Grabiszyńska" width="2000" height="1473" loading="lazy" decoding="async"></a><figcaption>Salon z szarą sofą, okrągłym stolikiem i dekoracyjną ścianą</figcaption></figure><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/04.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="3" aria-label="Powiększ: Kuchnia z drewnianym półwyspem, hokerami i czarną witryną — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/04.webp" alt="Kuchnia z drewnianym półwyspem, hokerami i czarną witryną — Mieszkanie Grabiszyńska" width="2000" height="1857" loading="lazy" decoding="async"></a><figcaption>Kuchnia z drewnianym półwyspem, hokerami i czarną witryną</figcaption></figure><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/05.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="4" aria-label="Powiększ: Sypialnia z motywem księżyca nad łóżkiem i drewnianymi detalami — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/05.webp" alt="Sypialnia z motywem księżyca nad łóżkiem i drewnianymi detalami — Mieszkanie Grabiszyńska" width="1865" height="1433" loading="lazy" decoding="async"></a><figcaption>Sypialnia z motywem księżyca nad łóżkiem i drewnianymi detalami</figcaption></figure><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/06.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="5" aria-label="Powiększ: Pokój dziecięcy z leśnym motywem na ścianie, łóżeczkiem i fotelem — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/06.webp" alt="Pokój dziecięcy z leśnym motywem na ścianie, łóżeczkiem i fotelem — Mieszkanie Grabiszyńska" width="2000" height="1492" loading="lazy" decoding="async"></a><figcaption>Pokój dziecięcy z leśnym motywem na ścianie, łóżeczkiem i fotelem</figcaption></figure><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/07.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="6" aria-label="Powiększ: Pokój dziecięcy z małym stolikiem, regałem i jasną szafą — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/07.webp" alt="Pokój dziecięcy z małym stolikiem, regałem i jasną szafą — Mieszkanie Grabiszyńska" width="1832" height="1496" loading="lazy" decoding="async"></a><figcaption>Pokój dziecięcy z małym stolikiem, regałem i jasną szafą</figcaption></figure><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/08.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="7" aria-label="Powiększ: Łazienka z okrągłym podświetlanym lustrem i drewnianą szafką — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/08.webp" alt="Łazienka z okrągłym podświetlanym lustrem i drewnianą szafką — Mieszkanie Grabiszyńska" width="998" height="1560" loading="lazy" decoding="async"></a><figcaption>Łazienka z okrągłym podświetlanym lustrem i drewnianą szafką</figcaption></figure><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/09.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="8" aria-label="Powiększ: Łazienka z długim blatem, zabudową i przeszkloną strefą kąpieli — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/09.webp" alt="Łazienka z długim blatem, zabudową i przeszkloną strefą kąpieli — Mieszkanie Grabiszyńska" width="1335" height="2000" loading="lazy" decoding="async"></a><figcaption>Łazienka z długim blatem, zabudową i przeszkloną strefą kąpieli</figcaption></figure><figure><a href="../../assets/images/portfolio/mieszkanie-grabiszynska/10.webp" data-gallery-key="mieszkania" data-project-index="0" data-photo-index="9" aria-label="Powiększ: Wanna z szybą prysznicową i drewnianą obudową — Mieszkanie Grabiszyńska"><img src="../../assets/images/portfolio/mieszkanie-grabiszynska/10.webp" alt="Wanna z szybą prysznicową i drewnianą obudową — Mieszkanie Grabiszyńska" width="1225" height="1665" loading="lazy" decoding="async"></a><figcaption>Wanna z szybą prysznicową i drewnianą obudową</figcaption></figure></section>
             <section class="editorial section-wrap"><h2>Poznaj pozostałe projekty</h2>
-              <p><a href="../../projektowanie-wnetrz/">Projektowanie wnętrz — zobacz portfolio i dowiedz się więcej o współpracy.</a></p>
+              <a class="text-link" href="#kontakt">Porozmawiajmy o Twoim projekcie <span aria-hidden="true">↗</span></a>
+              <p><a href="../../portfolio/projekty-wnetrz/">Projekty wnętrz — zobacz pozostałe galerie.</a></p>
             </section>
     <section class="contact" id="kontakt" aria-labelledby="contact-title">
       <div class="section-wrap">
-        <span class="eyebrow">Wrocław i Dolny Śląsk</span><h2 id="contact-title">Kontakt</h2>
-        <p class="contact-intro">Porozmawiajmy o Twoim projekcie. Podaj miejscowość, metraż i planowany termin.</p>
+        <h2 id="contact-title">Kontakt</h2>
+        <p class="contact-intro">Zapraszam do kontaktu po indywidualną wycenę.</p>
         <div class="contact-details">
           <div class="contact-item">
             <svg class="contact-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="24" cy="24" r="8"/><path d="M32 16v15c0 7 11 4 11-7a19 19 0 1 0-8 15"/></svg>
-            <div><span class="contact-label">Napisz do nas</span><span class="contact-value" data-email aria-disabled="true">Adres e-mail wkrótce</span></div>
+            <div><span class="contact-label">Napisz do nas</span><a class="contact-value" href="mailto:biuro@goodtaste.net.pl">biuro@goodtaste.net.pl</a></div>
           </div>
           <div class="contact-item">
             <svg class="contact-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m15 7-8 1c-2 0-3 2-2 5 3 15 15 27 30 30 3 1 5 0 5-2l1-8-11-5-4 5a28 28 0 0 1-11-11l5-4-5-11Z"/><path d="M28 6h11a5 5 0 0 1 5 5v4a5 5 0 0 1-5 5h-6l-5 4V11a5 5 0 0 1 5-5"/></svg>
-            <div><span class="contact-label">Zadzwoń</span><span class="contact-value" data-phone aria-disabled="true">Numer telefonu wkrótce</span></div>
+            <div><span class="contact-label">Zadzwoń</span><a class="contact-value" href="tel:607753510">607 753 510</a></div>
           </div>
           <div class="contact-item">
             <svg class="contact-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="19"/><path d="M27 39V24h5l1-6h-6v-3c0-2 1-3 3-3h3V7h-5c-5 0-8 3-8 8v3h-4v6h4v15"/></svg>
-            <div><span class="contact-label">Obserwuj nas</span><span class="contact-value" data-facebook aria-disabled="true">Facebook — wkrótce</span></div>
+            <div><span class="contact-label">Obserwuj nas</span><a class="contact-value" href="https://www.facebook.com/profile.php?id=100044279233523" target="_blank" rel="noopener noreferrer" aria-label="Facebook — otwiera się w nowej karcie">Facebook</a></div>
           </div>
         </div>
       </div>
     </section>
+<section class="seo-copy editorial section-wrap"><h2>Jasne wnętrze dla codzienności</h2><p>Projekt mieszkania przy Grabiszyńskiej łączy jasną bazę z drewnianymi powierzchniami i czarnymi detalami. Kuchnia otwiera się na salon, a motywy na ścianach nadają odrębny charakter sypialni i pokojowi dziecięcemu. W łazience powtarza się zestawienie drewna z szarością; zabudowy i podświetlane lustro porządkują kompozycję.</p></section>
   </main>
   <footer class="footer"><div class="section-wrap footer-inner">
     <a class="wordmark footer-wordmark" href="#start" aria-label="Good Taste — powrót na górę"><img class="brand-logo" src="../../assets/images/logo.png" width="600" height="256" alt="Good Taste"></a>
-    <span class="facebook-button" data-facebook aria-label="Facebook — link wkrótce" aria-disabled="true" title="Facebook — link wkrótce">f</span>
+    <a class="facebook-button" href="https://www.facebook.com/profile.php?id=100044279233523" target="_blank" rel="noopener noreferrer" aria-label="Facebook — otwiera się w nowej karcie">f</a>
     <p>Good Taste © <span id="year">2026</span></p>
     <a class="back-top" href="#start" aria-label="Wróć na górę">↑</a>
   </div></footer>
