@@ -4,21 +4,39 @@ const content = window.siteContent;
 const assetRoot = document.body.dataset.root || "./";
 const menu = document.querySelector(".navigation");
 const toggle = document.querySelector(".menu-toggle");
+const navGroups = [...menu.querySelectorAll(".nav-group")];
 const dialog = document.querySelector(".lightbox");
 let activeGallery, activeProject, returnFocus;
 let activeIndex = 0;
+function closeSubmenus(except) {
+  for (const group of navGroups) if (group !== except) group.open = false;
+}
 function closeMenu() {
+  closeSubmenus();
   toggle.setAttribute("aria-expanded", "false");
   menu.classList.remove("is-open");
 }
 toggle.addEventListener("click", () => {
   const open = toggle.getAttribute("aria-expanded") !== "true";
+  if (!open) closeSubmenus();
   toggle.setAttribute("aria-expanded", String(open));
   menu.classList.toggle("is-open", open);
 });
 menu.addEventListener("click", event => { if (event.target.closest("a")) closeMenu(); });
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") { closeMenu(); toggle.focus(); }
+  if (event.key !== "Escape" || dialog.open) return;
+  const openGroup = navGroups.find(group => group.open);
+  if (openGroup) {
+    closeSubmenus();
+    openGroup.querySelector("summary").focus();
+  } else if (toggle.getAttribute("aria-expanded") === "true") { closeMenu(); toggle.focus(); }
+});
+for (const group of navGroups) {
+  group.addEventListener("toggle", () => { if (group.open) closeSubmenus(group); });
+}
+// Inline mobile submenus must not collapse on pointer focus before a tap lands.
+menu.addEventListener("focusout", event => {
+  if (!window.matchMedia("(max-width: 680px)").matches && !menu.contains(event.relatedTarget)) closeSubmenus();
 });
 document.addEventListener("click", event => { if (!event.target.closest(".header")) closeMenu(); });
 window.matchMedia("(max-width: 680px)").addEventListener("change", closeMenu);
@@ -120,14 +138,38 @@ if (content.email) contactLinks("[data-email]", `mailto:${content.email}`, conte
 if (content.phone) contactLinks("[data-phone]", `tel:${content.phone.replace(/[^+\d]/g, "")}`, content.phone);
 if (/^https:\/\//i.test(content.facebook)) contactLinks("[data-facebook]", content.facebook, "Facebook", true);
 document.querySelector("#year").textContent = new Date().getFullYear();
-// Match actual page URLs; navigation now includes service pages, not only anchors.
-for (const link of menu.querySelectorAll("a")) {
-  const target = new URL(link.href);
-  const current = target.pathname === location.pathname && !target.hash;
-  link.classList.toggle("is-active", current);
-  if (current) link.setAttribute("aria-current", "page");
-  else link.removeAttribute("aria-current");
+// Match section links on the home page as well as standalone service pages.
+function updateNavigation() {
+  const links = [...menu.querySelectorAll("a")];
+  const section = links.find(link => {
+    const target = new URL(link.href);
+    return target.pathname === location.pathname && target.hash && target.hash === location.hash;
+  });
+  for (const link of links) {
+    const target = new URL(link.href);
+    const current = section ? link === section : target.pathname === location.pathname && !target.hash;
+    link.classList.toggle("is-active", current);
+    if (current) link.setAttribute("aria-current", section ? "location" : "page");
+    else link.removeAttribute("aria-current");
+  }
+  const rootPath = new URL(assetRoot, document.baseURI).pathname;
+  const pagePath = location.pathname.slice(rootPath.length);
+  for (const group of navGroups) {
+    const inPortfolio = group.dataset.navGroup === "portfolio" &&
+      (pagePath.startsWith("portfolio/") || pagePath.startsWith("projekty/") ||
+       (!pagePath && ["#portfolio", "#technologiczne", "#mieszkania"].includes(location.hash)));
+    const inOffer = group.dataset.navGroup === "oferta" && !pagePath && location.hash === "#oferta";
+    const current = Boolean(group.querySelector("a.is-active")) || inPortfolio || inOffer;
+    group.classList.toggle("is-active", current);
+    if (current) {
+      const homeLink = menu.querySelector(`a[href="${assetRoot}"]`);
+      homeLink?.classList.remove("is-active");
+      homeLink?.removeAttribute("aria-current");
+    }
+  }
 }
+updateNavigation();
+window.addEventListener("hashchange", updateNavigation);
 // Keep anchor destinations below the actual header after logo loading and resizing.
 new ResizeObserver(() => {
   if (toggle.getAttribute("aria-expanded") !== "true") {

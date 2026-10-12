@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
   <link rel="icon" href="{{root}}assets/images/GT_znak.png" type="image/png">
-  <link rel="stylesheet" href="{{root}}assets/styles.css">
-  <script src="{{root}}assets/content.js" defer></script>
-  <script src="{{root}}assets/main.js" defer></script>
+  <link rel="stylesheet" href="{{root}}assets/styles.css?v=20261012-alignment2">
+  <script src="{{root}}assets/content.js?v=20261012-copy" defer></script>
+  <script src="{{root}}assets/main.js?v=20261012-copy" defer></script>
 </head>
 <body id="start" data-root="{{root}}">
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -21,8 +21,21 @@
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation"><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></button>
       <nav class="navigation" id="navigation" aria-label="Menu główne">
         <a href="{{root}}" >Start</a>
-        <a href="{{root}}projekty-technologiczne-gastronomii/">Projekty technologiczne</a>
-        <a href="{{root}}projektowanie-wnetrz/">Projekty mieszkań</a>
+        <a href="{{root}}#o-nas">O Nas</a>
+        <details class="nav-group" data-nav-group="oferta">
+          <summary>Oferta</summary>
+          <ul class="nav-submenu">
+            <li><a href="{{root}}projekty-technologiczne-gastronomii/">Projekty technologiczne</a></li>
+            <li><a href="{{root}}projektowanie-wnetrz/">Projekty wnętrz</a></li>
+          </ul>
+        </details>
+        <details class="nav-group" data-nav-group="portfolio">
+          <summary>Portfolio</summary>
+          <ul class="nav-submenu">
+            <li><a href="{{root}}portfolio/projekty-technologiczne/">Projekty technologiczne</a></li>
+            <li><a href="{{root}}portfolio/projekty-wnetrz/">Projekty wnętrz</a></li>
+          </ul>
+        </details>
         <a href="#kontakt">Kontakt</a>
       </nav>
     </div>
@@ -31,8 +44,8 @@
 {{body}}
     <section class="contact" id="kontakt" aria-labelledby="contact-title">
       <div class="section-wrap">
-        <span class="eyebrow">Wrocław i Dolny Śląsk</span><h2 id="contact-title">Kontakt</h2>
-        <p class="contact-intro">Porozmawiajmy o Twoim projekcie. Podaj miejscowość, metraż i planowany termin.</p>
+        <h2 id="contact-title">Kontakt</h2>
+        <p class="contact-intro">Zapraszam do kontaktu po indywidualną wycenę.</p>
         <div class="contact-details">
           <div class="contact-item">
             <svg class="contact-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="24" cy="24" r="8"/><path d="M32 16v15c0 7 11 4 11-7a19 19 0 1 0-8 15"/></svg>
@@ -49,6 +62,7 @@
         </div>
       </div>
     </section>
+{{seo}}
   </main>
   <footer class="footer"><div class="section-wrap footer-inner">
     <a class="wordmark footer-wordmark" href="#start" aria-label="Good Taste — powrót na górę"><img class="brand-logo" src="{{root}}assets/images/logo.png" width="600" height="256" alt="Good Taste"></a>

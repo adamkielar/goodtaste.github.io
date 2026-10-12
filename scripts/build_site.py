@@ -23,7 +23,13 @@ SERVICES = {
         'Projekty technologiczne gastronomii we Wrocławiu i na Dolnym Śląsku. Zobacz portfolio Good Taste i porozmawiaj o projekcie restauracji lub lokalu.'),
     'mieszkania': ('projektowanie-wnetrz/', 'Projektowanie wnętrz', 'interiors.html',
         'Projektowanie wnętrz Wrocław i Dolny Śląsk | Good Taste',
-        'Projektowanie wnętrz mieszkań we Wrocławiu i na Dolnym Śląsku. Poznaj projekty Good Taste: salony, kuchnie, sypialnie i łazienki. Porozmawiajmy o wnętrzu.')
+        'Projekty wnętrz we Wrocławiu i na Dolnym Śląsku. Poznaj projekty mieszkań, domów i biur Good Taste. Porozmawiajmy o wnętrzu.')
+}
+PORTFOLIOS = {
+    'technologiczne': ('portfolio/projekty-technologiczne/', 'Projekty technologiczne',
+        'Wizualizacje restauracji i lokali gastronomicznych. Obejrzyj galerie projektów Good Taste i poznaj koncepcje przestrzeni dla gości oraz stref obsługi.'),
+    'mieszkania': ('portfolio/projekty-wnetrz/', 'Projekty wnętrz',
+        'Mieszkania, domy i biura w projektach Good Taste. Obejrzyj galerie wnętrz, detale i pomysły na przestrzeń do życia oraz pracy.')
 }
 OUTPUT = {}
 PAGES = []
@@ -56,7 +62,7 @@ def cards(key, root):
     return '\n'.join(result)
 
 
-def render(path, title, description, body, image='assets/images/showcase.webp', extra=None, trail=None, image_alt='Projekty wnętrz Good Taste'):
+def render(path, title, description, body, image='assets/images/showcase.webp', extra=None, trail=None, image_alt='Projekty wnętrz Good Taste', seo=''):
     root = '../' * path.count('/') if path else './'
     url = BASE + path
     organization = {'@type': 'Organization', '@id': BASE + '#organization', 'name': SITE['name'], 'url': BASE,
@@ -97,7 +103,8 @@ def render(path, title, description, body, image='assets/images/showcase.webp', 
   <meta name="twitter:image" content="{BASE}{image}">
   <meta name="twitter:image:alt" content="{escape(image_alt)}">
   <script type="application/ld+json">{schema}</script>'''
-    html = fill(TEMPLATE, head=head, body=body, root=root)
+    # Optional editorial/SEO copy is always after the contact section, before the footer.
+    html = fill(TEMPLATE, head=head, body=body, seo=fill(seo, root=root), root=root)
     # Contact details must be readable before JavaScript runs, too.
     for field, href in [('email', 'mailto:' + DATA.get('email', '')), ('phone', 'tel:' + re.sub(r'[^+\d]', '', DATA.get('phone', '')))]:
         if DATA.get(field):
@@ -116,37 +123,45 @@ def build():
     PAGES.clear()
     home = fill((ROOT / 'templates/home.html').read_text(), **{key: cards(key, './') for key in SERVICES})
     render('', 'Good Taste — wnętrza i gastronomia | Wrocław, Dolny Śląsk',
-           'Good Taste: projektowanie wnętrz mieszkań i projekty technologiczne gastronomii. Wrocław i Dolny Śląsk. Zobacz portfolio i porozmawiaj o swoim projekcie.', home)
+           'Good Taste: projektowanie wnętrz mieszkań, domów i biur oraz projekty technologiczne gastronomii. Wrocław i Dolny Śląsk. Zobacz portfolio i porozmawiaj o swoim projekcie.', home)
     for key, (path, label, template, title, description) in SERVICES.items():
-        trail = [('Start', ''), (label, None)]
-        body = fill((ROOT / 'templates' / template).read_text(), breadcrumbs=crumbs(trail, '../'), projects=cards(key, '../'), root='../')
+        trail = [('Start', ''), ('Oferta', '#oferta'), (label, None)]
+        body = fill((ROOT / 'templates' / template).read_text(), breadcrumbs=crumbs(trail, '../'), root='../')
         service = {'@type': 'Service', '@id': BASE + path + '#service', 'name': label, 'serviceType': label,
                    'url': BASE + path, 'provider': {'@id': BASE + '#organization'},
                    'areaServed': {'@type': 'AdministrativeArea', 'name': 'województwo dolnośląskie'}}
-        render(path, title, description, body, extra=service, trail=trail)
+        render(path, title, description, body, extra=service, trail=trail,
+               seo=(ROOT / 'templates' / template.replace('.html', '-seo.html')).read_text())
+        portfolio_path, portfolio_label, portfolio_description = PORTFOLIOS[key]
+        trail = [('Start', ''), ('Portfolio', '#portfolio'), (portfolio_label, None)]
+        body = fill((ROOT / 'templates/portfolio.html').read_text(), breadcrumbs=crumbs(trail, '../../'),
+                    label=portfolio_label, description=portfolio_description, service=path,
+                    projects=cards(key, '../../'), root='../../')
+        render(portfolio_path, portfolio_label + ' — portfolio | Good Taste', portfolio_description, body, trail=trail,
+               seo=f'<section class="seo-copy editorial section-wrap"><h2>{escape(portfolio_label)}</h2><p>{escape(portfolio_description)}</p></section>')
         for i, project in enumerate(DATA['galleries'][key]['projects']):
             project_path = 'projekty/' + project['slug'] + '/'
-            trail = [('Start', ''), (label, path), (project['title'], None)]
+            trail = [('Start', ''), ('Portfolio', '#portfolio'), (portfolio_label, portfolio_path), (project['title'], None)]
             photos = []
             for index, item in enumerate(project['images']):
                 loading = 'fetchpriority="high"' if index == 0 else 'loading="lazy"'
                 photos.append(f'''<figure><a href="../../{item['src']}" data-gallery-key="{key}" data-project-index="{i}" data-photo-index="{index}" aria-label="Powiększ: {escape(item['alt'])}"><img src="../../{item['src']}" alt="{escape(item['alt'])}" width="{item['width']}" height="{item['height']}" {loading} decoding="async"></a><figcaption>{escape(item['alt'].split(' — ')[0])}</figcaption></figure>''')
             body = f'''<section class="page-intro section-wrap">
-              {crumbs(trail, '../../')}<span class="eyebrow">Portfolio · {escape(label)}</span>
-              <h1>{escape(project['title'])}</h1><p class="lead">{escape(project['subtitle'])}</p>
-              <p class="project-description">{escape(project['description'])}</p>
-              <a class="text-link" href="#kontakt">Porozmawiajmy o Twoim projekcie <span aria-hidden="true">↗</span></a>
+              {crumbs(trail, '../../')}<span class="eyebrow">Portfolio · {escape(portfolio_label)}</span>
+              <h1>{escape(project['title'])}</h1>
             </section>
             <section class="photo-gallery section-wrap" aria-label="Wizualizacje projektu">{''.join(photos)}</section>
             <section class="editorial section-wrap"><h2>Poznaj pozostałe projekty</h2>
-              <p><a href="../../{path}">{escape(label)} — zobacz portfolio i dowiedz się więcej o współpracy.</a></p>
+              <a class="text-link" href="#kontakt">Porozmawiajmy o Twoim projekcie <span aria-hidden="true">↗</span></a>
+              <p><a href="../../{portfolio_path}">{escape(portfolio_label)} — zobacz pozostałe galerie.</a></p>
             </section>'''
             work = {'@type': 'CreativeWork', '@id': BASE + project_path + '#project', 'name': project['title'],
                     'description': project['description'], 'url': BASE + project_path, 'creator': {'@id': BASE + '#organization'},
                     'image': [BASE + item['src'] for item in project['images']], 'inLanguage': 'pl-PL'}
             render(project_path, project['title'] + ' — projekt wnętrza | Good Taste',
                    project['subtitle'] + '. ' + project['description'].split('. ')[0] + '. Zobacz wizualizacje projektu Good Taste.',
-                   body, image=project['images'][0]['src'], extra=work, trail=trail, image_alt=project['images'][0]['alt'])
+                   body, image=project['images'][0]['src'], extra=work, trail=trail, image_alt=project['images'][0]['alt'],
+                   seo=f'<section class="seo-copy editorial section-wrap"><h2>{escape(project["subtitle"])}</h2><p>{escape(project["description"])}</p></section>')
     # No invented modification dates, priorities or change frequencies.
     ns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
     ins = 'http://www.google.com/schemas/sitemap-image/1.1'

@@ -7,6 +7,9 @@
     <loc>https://goodtaste.net.pl/projekty-technologiczne-gastronomii/</loc>
   </url>
   <url>
+    <loc>https://goodtaste.net.pl/portfolio/projekty-technologiczne/</loc>
+  </url>
+  <url>
     <loc>https://goodtaste.net.pl/projekty/restauracja-nowwa-wroclaw/</loc>
     <image:image>
       <image:loc>https://goodtaste.net.pl/assets/images/portfolio/restauracja-nowwa-wroclaw/01.webp</image:loc>
@@ -47,6 +50,9 @@
   </url>
   <url>
     <loc>https://goodtaste.net.pl/projektowanie-wnetrz/</loc>
+  </url>
+  <url>
+    <loc>https://goodtaste.net.pl/portfolio/projekty-wnetrz/</loc>
   </url>
   <url>
     <loc>https://goodtaste.net.pl/projekty/mieszkanie-grabiszynska/</loc>
@@ -148,6 +154,54 @@
     </image:image>
     <image:image>
       <image:loc>https://goodtaste.net.pl/assets/images/portfolio/lazienka-na-koziej/03.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://goodtaste.net.pl/projekty/dom-w-centrum/</loc>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-centrum/01.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-centrum/02.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-centrum/03.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-centrum/04.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-centrum/05.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-centrum/06.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-centrum/07.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://goodtaste.net.pl/projekty/dom-w-krzyzanowie/</loc>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-krzyzanowie/01.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-krzyzanowie/02.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-krzyzanowie/03.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/dom-w-krzyzanowie/04.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://goodtaste.net.pl/projekty/biuro/</loc>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/biuro/01.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://goodtaste.net.pl/assets/images/portfolio/biuro/02.webp</image:loc>
     </image:image>
   </url>
 </urlset>

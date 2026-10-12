@@ -1,8 +1,8 @@
 // Portfolio data. After editing, run python3 scripts/build_site.py.
 window.siteContent = {
-  "email": "",
-  "phone": "",
-  "facebook": "",
+  "email": "biuro@goodtaste.net.pl",
+  "phone": "607 753 510",
+  "facebook": "https://www.facebook.com/profile.php?id=100044279233523",
   "galleries": {
     "technologiczne": {
       "label": "Projekty technologiczne",
@@ -94,7 +94,7 @@ window.siteContent = {
       ]
     },
     "mieszkania": {
-      "label": "Projekty mieszkań",
+      "label": "Projekty wnętrz",
       "projects": [
         {
           "title": "Mieszkanie Grabiszyńska",
@@ -314,6 +314,124 @@ window.siteContent = {
           "slug": "lazienka-na-koziej",
           "subtitle": "Spójna zabudowa łazienki",
           "description": "W łazience na Koziej jasne fronty i drewno tworzą spokojne tło dla czarnych detali. Duże lustro oraz oświetlenie pod szafkami podkreślają linię blatu. Przeszklona kabina prysznicowa z ciemnym obramowaniem zamyka kompozycję, a zabudowa wykorzystuje przestrzeń wokół umywalki i nad nią."
+        },
+        {
+          "title": "Dom w centrum",
+          "slug": "dom-w-centrum",
+          "subtitle": "Drewno, światło i przestrzeń dla rodziny",
+          "description": "Jasne wnętrza domu łączą naturalne drewno, spokojne kolory i zieleń. Wizualizacje pokazują sypialnię, kuchnię, salon z kominkiem i jadalnią oraz pokój dziecięcy ze strefą zabawy.",
+          "cover": "assets/images/portfolio/dom-w-centrum/cover.webp",
+          "images": [
+            {
+              "src": "assets/images/portfolio/dom-w-centrum/01.webp",
+              "source": "1.png",
+              "alt": "Jasna sypialnia z drewnianą zabudową i szarą ścianą za łóżkiem — Dom w centrum",
+              "width": 2000,
+              "height": 1370
+            },
+            {
+              "src": "assets/images/portfolio/dom-w-centrum/02.webp",
+              "source": "2.2..png",
+              "alt": "Kuchnia z drewnianymi frontami, białym blatem i roślinami przy oknie — Dom w centrum",
+              "width": 2000,
+              "height": 1845
+            },
+            {
+              "src": "assets/images/portfolio/dom-w-centrum/03.webp",
+              "source": "3.3..png",
+              "alt": "Salon z kominkiem, jasną sofą i drewnianymi belkami pod sufitem — Dom w centrum",
+              "width": 2000,
+              "height": 1599
+            },
+            {
+              "src": "assets/images/portfolio/dom-w-centrum/04.webp",
+              "source": "4.4.png",
+              "alt": "Jadalnia z drewnianym stołem i tapicerowanymi krzesłami otwarta na salon — Dom w centrum",
+              "width": 2000,
+              "height": 1599
+            },
+            {
+              "src": "assets/images/portfolio/dom-w-centrum/05.webp",
+              "source": "5.5..png",
+              "alt": "Strefa zabawy z drabinką gimnastyczną i miękkimi siedziskami — Dom w centrum",
+              "width": 2000,
+              "height": 1998
+            },
+            {
+              "src": "assets/images/portfolio/dom-w-centrum/06.webp",
+              "source": "6.6..png",
+              "alt": "Pokój dziecięcy z namiotem tipi, regałem i małym stolikiem — Dom w centrum",
+              "width": 2000,
+              "height": 1599
+            },
+            {
+              "src": "assets/images/portfolio/dom-w-centrum/07.webp",
+              "source": "7.7..png",
+              "alt": "Jasny pokój dziecięcy z łóżkiem, drewnianą podłogą i stonowanymi dodatkami — Dom w centrum",
+              "width": 2000,
+              "height": 1599
+            }
+          ]
+        },
+        {
+          "title": "Dom w Krzyżanowie",
+          "slug": "dom-w-krzyzanowie",
+          "subtitle": "Szarości i drewno w nowoczesnym domu",
+          "description": "Wnętrza domu w Krzyżanowie zestawiają ciemne szarości z naturalnym drewnem. Galeria przedstawia łazienkę z wolnostojącą wanną, kuchnię z wyspą oraz sypialnię z tapicerowanym zagłówkiem.",
+          "cover": "assets/images/portfolio/dom-w-krzyzanowie/cover.webp",
+          "images": [
+            {
+              "src": "assets/images/portfolio/dom-w-krzyzanowie/01.webp",
+              "source": "1.1..png",
+              "alt": "Łazienka z szarą okładziną, drewnianą szafką i okrągłym lustrem — Dom w Krzyżanowie",
+              "width": 2000,
+              "height": 1918
+            },
+            {
+              "src": "assets/images/portfolio/dom-w-krzyzanowie/02.webp",
+              "source": "2.2..png",
+              "alt": "Wolnostojąca wanna na tle drewnianej ściany i ciemnej zabudowy — Dom w Krzyżanowie",
+              "width": 2000,
+              "height": 1599
+            },
+            {
+              "src": "assets/images/portfolio/dom-w-krzyzanowie/03.webp",
+              "source": "3.3.png",
+              "alt": "Kuchnia z wyspą, ciemnymi frontami i roślinami nad blatem — Dom w Krzyżanowie",
+              "width": 2000,
+              "height": 1599
+            },
+            {
+              "src": "assets/images/portfolio/dom-w-krzyzanowie/04.webp",
+              "source": "4.4..png",
+              "alt": "Sypialnia z szarym łóżkiem, tapicerowanym zagłówkiem i drewnianą podłogą — Dom w Krzyżanowie",
+              "width": 2000,
+              "height": 1599
+            }
+          ]
+        },
+        {
+          "title": "Biuro",
+          "slug": "biuro",
+          "subtitle": "Otwarta przestrzeń pracy z żółtymi akcentami",
+          "description": "Koncepcja biura łączy jasną przestrzeń przy dużych oknach z szarymi powierzchniami, drewnem i żółtymi krzesłami. Lekkie przegrody i rośliny oddzielają stanowiska pracy, zachowując otwarty charakter wnętrza.",
+          "cover": "assets/images/portfolio/biuro/cover.webp",
+          "images": [
+            {
+              "src": "assets/images/portfolio/biuro/01.webp",
+              "source": "1.1.png",
+              "alt": "Stanowiska pracy przy dużych oknach z żółtymi krzesłami i drewnianą przegrodą — Biuro",
+              "width": 2000,
+              "height": 1599
+            },
+            {
+              "src": "assets/images/portfolio/biuro/02.webp",
+              "source": "2.2.png",
+              "alt": "Otwarta przestrzeń biurowa z roślinami, szarymi przegrodami i zegarem na ścianie — Biuro",
+              "width": 2000,
+              "height": 1599
+            }
+          ]
         }
       ]
     }

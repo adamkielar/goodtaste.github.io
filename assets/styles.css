@@ -1,5 +1,5 @@
 @charset "UTF-8";
-:root { --ink: #262626; --muted: #737373; --accent: #262626; --paper: #fff; --line: #e7e7e7; --soft: #f7f7f7; }
+:root { --ink: #262626; --muted: #737373; --accent: #262626; --paper: #fff; --line: #e7e7e7; --soft: #f7f7f7; --section-title-size: clamp(30px, 4vw, 40px); }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 132px; }
 body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -189,15 +189,17 @@ img { display: block; max-width: 100%; }
 .text-link:hover, .project-details:hover { color: #555; }
 .project-entry { min-width: 0; }
 .project-details { display: inline-block; margin-top: 12px; font-size: 12px; text-decoration: underline; text-underline-offset: 4px; padding-block: 8px; }
-.page-intro { padding-block: 38px 48px; }
+.page-intro { padding-block: 38px 32px; }
 .breadcrumbs { margin-bottom: 48px; font-size: 12px; line-height: 1.8; color: #666; }
 .breadcrumbs ol { display: flex; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; gap: 8px 12px; }
 .breadcrumbs li + li::before { content: "/"; margin-right: 12px; color: #999; }
 .breadcrumbs a { text-decoration: underline; text-underline-offset: 4px; }
-.page-intro h1 { max-width: 960px; font-size: clamp(30px, 4vw, 52px); font-weight: 400; line-height: 1.2; letter-spacing: -.5px; margin: 18px 0 24px; }
+.page-intro h1 { max-width: 960px; font-size: clamp(30px, 4vw, 52px); font-weight: 400; line-height: 1.2; letter-spacing: -.5px; margin: 18px 0 24px; text-transform: uppercase; overflow-wrap: anywhere; }
 .lead { font-size: clamp(18px, 2vw, 22px); line-height: 1.7; font-weight: 300; max-width: 850px; }
 .project-description { max-width: 800px; line-height: 1.9; font-size: 16px; }
-.editorial { padding-block: 48px 65px; max-width: 850px; }
+.editorial { padding-block: 48px 64px; max-width: 1240px; }
+.editorial > * { max-width: 850px; }
+.editorial > :first-child { margin-top: 0; }
 .editorial h2 { font-weight: 400; font-size: clamp(22px, 2.8vw, 29px); line-height: 1.4; margin: 40px 0 16px; }
 .editorial h2:first-child { margin-top: 0; }
 .editorial p, .brief-list { color: #555; line-height: 1.9; font-size: 16px; }
@@ -210,7 +212,11 @@ img { display: block; max-width: 100%; }
 .photo-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 28px; }
 .photo-gallery figure { margin: 0; min-width: 0; }
 .photo-gallery figure:first-child { grid-column: 1 / -1; }
-.photo-gallery img { width: 100%; height: auto; background: var(--soft); }
+.photo-gallery a { display: flex; justify-content: center; align-items: center; background: var(--soft); aspect-ratio: 4 / 3; }
+.photo-gallery img { width: 100%; height: 100%; object-fit: contain; }
+.photo-gallery figure:first-child a { aspect-ratio: auto; height: min(70dvh, 760px); }
+.page-intro + .photo-gallery { padding-top: 48px; }
+.page-intro + .portfolio-section { padding-top: 48px; }
 .photo-gallery figcaption { color: #666; font-size: 12px; line-height: 1.7; margin-top: 12px; }
 .contact h2 { margin-bottom: 25px; }
 .contact-intro { max-width: 650px; margin: 0 auto 54px; line-height: 1.8; color: #ddd; font-size: 15px; }
@@ -222,4 +228,98 @@ img { display: block; max-width: 100%; }
   .photo-gallery figure:first-child { grid-column: auto; }
   .section-copy { font-size: 15px; }
   .contact-intro { margin-bottom: 38px; }
+}
+
+/* Hazel Demo 1's centered About introduction and two-column service layout. */
+.about-section { background: var(--soft); padding-block: 96px; text-align: center; }
+.about-inner { max-width: 800px; }
+.about-section h2 { margin: 18px 0 28px; font-size: var(--section-title-size); font-weight: 400; letter-spacing: 4px; text-transform: uppercase; }
+.about-section p { font-size: 16px; line-height: 1.9; color: #555; margin: 18px 0; }
+.about-section .about-lead { font-size: clamp(20px, 2.2vw, 25px); font-weight: 300; line-height: 1.6; color: var(--ink); }
+.outline-link { display: inline-flex; align-items: center; gap: 20px; padding: 17px 22px; border: 1px solid var(--ink); font-size: 10px; line-height: 1.8; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 22px; transition: background .2s, color .2s; }
+.outline-link:hover { background: var(--ink); color: white; }
+.offer-section { padding-block: 96px 64px; border-bottom: 1px solid var(--line); }
+.offer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; }
+.offer-card { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
+.offer-card h3 { font-size: clamp(21px, 2.2vw, 28px); font-weight: 400; margin: 14px 0 20px; }
+.offer-card p, .offer-note { color: #555; font-size: 16px; line-height: 1.9; }
+.offer-card .text-link { margin-top: auto; margin-bottom: 0; padding-top: 20px; }
+.offer-note { margin: 36px 0 0; padding-top: 28px; border-top: 1px solid var(--line); }
+.offer-note a { text-decoration: underline; text-underline-offset: 4px; }
+.service-offer { border-block: 1px solid var(--line); }
+.service-offer h3 { font-size: 19px; font-weight: 500; line-height: 1.6; }
+.service-steps { list-style: none; padding: 0; counter-reset: steps; }
+.service-steps > li { position: relative; padding: 24px 0 24px 54px; border-bottom: 1px solid var(--line); counter-increment: steps; }
+.service-steps > li::before { content: counter(steps, decimal-leading-zero); position: absolute; left: 0; top: 30px; font-size: 13px; letter-spacing: 1px; color: var(--muted); }
+.service-steps h3 { margin: 0 0 10px; }
+.service-steps p { margin: 0; }
+.service-steps details { border-bottom: 0; padding-bottom: 0; }
+.page-intro > .text-link + .text-link { margin-left: 24px; }
+@media (min-width: 681px) and (max-width: 900px) { .navigation { gap: 18px; } .navigation a { font-size: 9px; letter-spacing: 1.4px; } }
+@media (max-width: 680px) {
+  .about-section { padding-block: 58px; }
+  .offer-section { padding-block: 58px 42px; }
+  .offer-grid { grid-template-columns: 1fr; gap: 36px; }
+  .offer-card + .offer-card { border-top: 1px solid var(--line); padding-top: 36px; }
+  .service-steps > li { padding-left: 38px; }
+}
+
+/* Native disclosure menus work with touch, keyboard and without JavaScript. */
+.nav-group { position: relative; }
+.nav-group > summary { display: flex; align-items: center; gap: 9px; list-style: none; cursor: pointer; font-size: 10px; font-weight: 500; letter-spacing: 2.2px; line-height: 22px; text-transform: uppercase; }
+.nav-group > summary::-webkit-details-marker { display: none; }
+.nav-group > summary::after { content: ""; width: 6px; height: 6px; border-right: 1px solid; border-bottom: 1px solid; transform: translateY(-2px) rotate(45deg); }
+.nav-group[open] > summary::after { transform: translateY(2px) rotate(225deg); }
+.nav-group > summary:hover, .nav-group.is-active > summary { text-decoration: underline; text-underline-offset: 7px; }
+.nav-group > summary:focus-visible { outline: 2px solid white; outline-offset: 6px; }
+.nav-submenu { position: absolute; top: calc(100% + 14px); left: -20px; min-width: 270px; margin: 0; padding: 10px 20px; list-style: none; background: #111; border: 1px solid #333; box-shadow: 0 12px 24px rgb(0 0 0 / 15%); }
+.navigation .nav-submenu a { display: block; padding: 12px 0; font-size: 10px; line-height: 1.8; letter-spacing: 1.4px; }
+.navigation .nav-submenu a::after { bottom: 7px; }
+.portfolio-heading { padding-top: 80px; }
+.portfolio-heading h2 { font-size: var(--section-title-size); font-weight: 400; letter-spacing: 4px; text-transform: uppercase; margin: 16px 0 0; }
+.portfolio-heading + .portfolio-section { padding-top: 50px; }
+.portfolio-invite { border-block: 1px solid var(--line); }
+@media (max-width: 680px) {
+  .header:has(.navigation.is-open) { max-height: 100dvh; overflow-y: auto; }
+  .nav-group { width: 100%; }
+  .nav-group > summary { padding-block: 5px; justify-content: space-between; }
+  .nav-submenu { position: static; min-width: 0; margin: 12px 0 0 12px; padding: 0 0 0 16px; border: 0; border-left: 1px solid #444; box-shadow: none; }
+  .navigation .nav-submenu a { padding-block: 10px; }
+  .portfolio-heading { padding-top: 56px; }
+  .portfolio-heading + .portfolio-section { padding-top: 35px; }
+}
+
+/* Source copy leads; supplementary SEO copy follows contact on every page. */
+.about-section h1 { margin: 18px 0 28px; font-size: var(--section-title-size); font-weight: 400; letter-spacing: 4px; text-transform: uppercase; }
+.category-intro h1 { text-transform: uppercase; }
+.service-steps h2 { font-size: 19px; font-weight: 500; line-height: 1.6; margin: 0 0 10px; }
+.service-steps p + p { margin-top: 18px; }
+.portfolio-links { padding-block: 24px 48px; }
+.portfolio-links .text-link { margin: 0; }
+.seo-copy { padding-block: 42px; }
+.seo-copy h2 { font-size: 22px; }
+.seo-copy p { font-size: 14px; }
+.seo-copy .text-link { margin-bottom: 0; }
+.seo-copy + .seo-copy { padding-top: 0; }
+
+/* Shared alignment rules for every page type. */
+.offer-section > .section-heading h2 { font-size: var(--section-title-size); font-weight: 400; letter-spacing: 4px; }
+.offer-section > .section-heading h2::after { display: none; }
+.project-caption strong { min-height: 3.6em; }
+.contact-item { justify-content: flex-start; }
+.contact h2 { font-size: var(--section-title-size); font-weight: 400; letter-spacing: 4px; margin-top: 0; }
+.seo-copy h2 { margin-top: 0; }
+.navigation > a, .nav-group > summary { font-size: 10px; letter-spacing: 2.2px; }
+@media (min-width: 681px) {
+  .offer-card > p { min-height: 3.8em; }
+}
+@media (max-width: 680px) {
+  .page-intro { padding-bottom: 24px; }
+  .page-intro + .photo-gallery, .page-intro + .portfolio-section { padding-top: 32px; }
+  .photo-gallery figure:first-child a { aspect-ratio: 4 / 3; height: auto; }
+  .portfolio-links { padding-block: 24px 36px; }
+}
+@media (max-width: 400px) {
+  .project-grid { grid-template-columns: 1fr; }
+  .project-caption strong { min-height: 0; }
 }
