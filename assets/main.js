@@ -67,8 +67,8 @@ function projectImage(item, index, large = false) {
 function projectPhotos(project) {
   return project.images?.length ? project.images : [{ src: null, alt: "" }];
 }
-// HTML contains the complete gallery. JavaScript only adds the lightbox.
-for (const link of document.querySelectorAll("[data-gallery-key]")) {
+// Project cards navigate to galleries; only individual photos open the lightbox.
+for (const link of document.querySelectorAll("[data-gallery-key][data-photo-index]")) {
   const key = link.dataset.galleryKey;
   const project = content.galleries[key]?.projects[Number(link.dataset.projectIndex)];
   if (!project || !dialog?.showModal) continue;

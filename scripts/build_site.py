@@ -53,11 +53,11 @@ def cards(key, root):
         item = project['images'][0]
         path = root + 'projekty/' + project['slug'] + '/'
         result.append(f'''<article class="project-entry">
-          <a class="project-card" href="{path}" data-gallery-key="{key}" data-project-index="{i}">
-            <span class="project-visual"><img src="{root}{project['cover']}" alt="{escape(item['alt'])}" width="{item['width']}" height="{item['height']}" loading="lazy" decoding="async"><span class="project-enlarge" aria-hidden="true">+</span></span>
+          <a class="project-card" href="{path}">
+            <span class="project-visual"><img src="{root}{project['cover']}" alt="{escape(item['alt'])}" width="{item['width']}" height="{item['height']}" loading="lazy" decoding="async"><span class="project-enlarge" aria-hidden="true">↗</span></span>
             <span class="project-caption"><strong>{escape(project['title'])}</strong></span>
           </a>
-          <a class="project-details" href="{path}">O projekcie <span class="sr-only">{escape(project['title'])}</span><span aria-hidden="true"> ↗</span></a>
+          <a class="project-details" href="{path}">Zobacz galerię <span class="sr-only">{escape(project['title'])}</span><span aria-hidden="true"> ↗</span></a>
         </article>''')
     return '\n'.join(result)
 
@@ -137,15 +137,14 @@ def build():
         body = fill((ROOT / 'templates/portfolio.html').read_text(), breadcrumbs=crumbs(trail, '../../'),
                     label=portfolio_label, description=portfolio_description, service=path,
                     projects=cards(key, '../../'), root='../../')
-        render(portfolio_path, portfolio_label + ' — portfolio | Good Taste', portfolio_description, body, trail=trail,
-               seo=f'<section class="seo-copy editorial section-wrap"><h2>{escape(portfolio_label)}</h2><p>{escape(portfolio_description)}</p></section>')
+        render(portfolio_path, portfolio_label + ' — portfolio | Good Taste', portfolio_description, body, trail=trail)
         for i, project in enumerate(DATA['galleries'][key]['projects']):
             project_path = 'projekty/' + project['slug'] + '/'
             trail = [('Start', ''), ('Portfolio', '#portfolio'), (portfolio_label, portfolio_path), (project['title'], None)]
             photos = []
             for index, item in enumerate(project['images']):
                 loading = 'fetchpriority="high"' if index == 0 else 'loading="lazy"'
-                photos.append(f'''<figure><a href="../../{item['src']}" data-gallery-key="{key}" data-project-index="{i}" data-photo-index="{index}" aria-label="Powiększ: {escape(item['alt'])}"><img src="../../{item['src']}" alt="{escape(item['alt'])}" width="{item['width']}" height="{item['height']}" {loading} decoding="async"></a><figcaption>{escape(item['alt'].split(' — ')[0])}</figcaption></figure>''')
+                photos.append(f'''<figure><a href="../../{item['src']}" data-gallery-key="{key}" data-project-index="{i}" data-photo-index="{index}" aria-label="Powiększ: {escape(item['alt'])}"><img src="../../{item['src']}" alt="{escape(item['alt'])}" width="{item['width']}" height="{item['height']}" {loading} decoding="async"></a></figure>''')
             body = f'''<section class="page-intro section-wrap">
               {crumbs(trail, '../../')}<span class="eyebrow">Portfolio · {escape(portfolio_label)}</span>
               <h1>{escape(project['title'])}</h1>
@@ -160,8 +159,7 @@ def build():
                     'image': [BASE + item['src'] for item in project['images']], 'inLanguage': 'pl-PL'}
             render(project_path, project['title'] + ' — projekt wnętrza | Good Taste',
                    project['subtitle'] + '. ' + project['description'].split('. ')[0] + '. Zobacz wizualizacje projektu Good Taste.',
-                   body, image=project['images'][0]['src'], extra=work, trail=trail, image_alt=project['images'][0]['alt'],
-                   seo=f'<section class="seo-copy editorial section-wrap"><h2>{escape(project["subtitle"])}</h2><p>{escape(project["description"])}</p></section>')
+                   body, image=project['images'][0]['src'], extra=work, trail=trail, image_alt=project['images'][0]['alt'])
     # No invented modification dates, priorities or change frequencies.
     ns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
     ins = 'http://www.google.com/schemas/sitemap-image/1.1'
